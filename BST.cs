@@ -79,42 +79,31 @@ public class BST<T> : IBST<T> where T : IComparable<T>
     public string PreOrderTraversal() => PreOrderTraversal(Root);
     private string PreOrderTraversal(TreeNode<T>? currNode)
     {
-        string result = "";
-        if (currNode == null) return result;
-        result += currNode.Value.ToString();
-
-        result += PreOrderTraversal(currNode.Left);
-        result += PreOrderTraversal(currNode.Right);
-
-        return $"{result} ";
+        if (currNode == null) return "";
+        
+        return currNode.Value.ToString() + " " + 
+           PreOrderTraversal(currNode.Left) + 
+           PreOrderTraversal(currNode.Right);
     }
 
     public string InOrderTraversal() => InOrderTraversal(Root);
     private string InOrderTraversal(TreeNode<T>? currNode)
     {
-        string result = "";
-        if (currNode == null) return result;
+        if (currNode == null) return "";
 
-        result += PreOrderTraversal(currNode.Left);
-        result += currNode.Value.ToString();
-        result += PreOrderTraversal(currNode.Right);
-
-        return result;       
+        return InOrderTraversal(currNode.Left) + 
+           currNode.Value.ToString() + " " + 
+           InOrderTraversal(currNode.Right);
     }
 
     public string PostOrderTraversal() => PostOrderTraversal(Root);
     private string PostOrderTraversal(TreeNode<T>? currNode)
     {
-        string result = "";
-        if (currNode == null) return result;
+        if (currNode == null) return "";
 
-        result += PreOrderTraversal(currNode.Left);
-        result += PreOrderTraversal(currNode.Right);
-
-        result += currNode.Value.ToString();
-
-        return result;  
-
+        return PostOrderTraversal(currNode.Left) + 
+           PostOrderTraversal(currNode.Right) + 
+           currNode.Value.ToString() + " ";
     }
     #endregion
 
