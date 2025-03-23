@@ -6,21 +6,21 @@ public class BST<T> : IBST<T> where T : IComparable<T>
 
     public void Insert(T value){
         Root == null ? Root = new TreeNode<T>(value)
-        : value == Root ? return
+        : value == Root ? return;
         : value > Root ? Insert(value, Root.Right)
         : Insert(value, Root.Left);
     }
     public void InsertIterative(T value)
     {
-        var TempRoot = Root
+        var TempRoot = Root;
 
         while(TempRoot != null){
-            if value == TempRoot return;
+            if (value == TempRoot) return;
             else if (value > TempRoot){
-                TempRoot = TempRoot.Right
+                TempRoot = TempRoot.Right;
             }
             else if (value < TempRoot){
-                TempRoot = TempRoot.Left
+                TempRoot = TempRoot.Left;
             }
         }
         TempRoot = new TreeNode<T>(value);
