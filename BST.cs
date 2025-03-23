@@ -53,7 +53,9 @@ public class BST<T> : IBST<T> where T : IComparable<T>
                 Root.Right = new TreeNode<T>(value);
                 return;
             }
-            else Insert(value, Root.Right);
+            else {
+                Insert(value, Root.Right);
+            }
         }
         else
         {
@@ -61,7 +63,9 @@ public class BST<T> : IBST<T> where T : IComparable<T>
                 Root.Left = new TreeNode<T>(value);
                 return;
             }
-            else Insert(value, Root.Left);
+            else{
+                Insert(value, Root.Left);
+            }
         }
     }
 
