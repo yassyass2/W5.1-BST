@@ -5,10 +5,10 @@ public class BST<T> : IBST<T> where T : IComparable<T>
     public TreeNode<T>? Root { get; set; }
 
     public void Insert(T value){
-        if (value == Root.Value) return;
+        if (value.CompareTo(Root.Value) == 0) return;
 
         return Root == null ? Root = new TreeNode<T>(value)
-        : value > Root.Value ? Insert(value, Root.Right)
+        : value.CompareTo(Root.Value) > 0 ? Insert(value, Root.Right)
         : Insert(value, Root.Left);
     }
     public void InsertIterative(T value)
@@ -16,11 +16,11 @@ public class BST<T> : IBST<T> where T : IComparable<T>
         var TempRoot = Root;
 
         while(TempRoot != null){
-            if (value == TempRoot.Value) return;
-            else if (value > TempRoot.Value){
+            if (value.CompareTo(TempRoot.Value) == 0) return;
+            else if (value.CompareTo(TempRoot.Value) > 0){
                 TempRoot = TempRoot.Right;
             }
-            else if (value < TempRoot.Value){
+            else if (value.CompareTo(TempRoot.Value) < 0){
                 TempRoot = TempRoot.Left;
             }
         }
@@ -29,15 +29,11 @@ public class BST<T> : IBST<T> where T : IComparable<T>
 
     private void Insert(T value, TreeNode<T>? node)
     {
-        if (value == Root.Value) return;
+        if (value.CompareTo(Root.Value) == 0) return;
 
         return Root == null ? Root = new TreeNode<T>(value)
-        : value > Root.Value ? Insert(value, Root.Right)
+        : value.CompareTo(Root.Value) > 0 ? Insert(value, Root.Right)
         : Insert(value, Root.Left);
-        // right child
-
-        // left child
-
     }
 
     #region Traversal
