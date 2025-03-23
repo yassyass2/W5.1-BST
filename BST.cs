@@ -41,30 +41,30 @@ public class BST<T> : IBST<T> where T : IComparable<T>
 
     private void Insert(T value, TreeNode<T>? node)
     {
-        if (Root == null){
-            Root = new TreeNode<T>(value);
+        if (node == null){
+            node = new TreeNode<T>(value);
             return;
         }
-        if (value.CompareTo(Root.Value) == 0) return;
+        if (value.CompareTo(node.Value) == 0) return;
 
-        if (value.CompareTo(Root.Value) > 0)
+        if (value.CompareTo(node.Value) > 0)
         {
-            if (Root.Right == null){
-                Root.Right = new TreeNode<T>(value);
+            if (node.Right == null){
+                node.Right = new TreeNode<T>(value);
                 return;
             }
             else {
-                Insert(value, Root.Right);
+                Insert(value, node.Right);
             }
         }
         else
         {
-            if (Root.Left == null){
-                Root.Left = new TreeNode<T>(value);
+            if (node.Left == null){
+                node.Left = new TreeNode<T>(value);
                 return;
             }
             else{
-                Insert(value, Root.Left);
+                Insert(value, node.Left);
             }
         }
     }
