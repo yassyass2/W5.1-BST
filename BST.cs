@@ -49,19 +49,19 @@ public class BST<T> : IBST<T> where T : IComparable<T>
 
         if (value.CompareTo(Root.Value) > 0)
         {
-            if (Root.Right == null)
+            if (Root.Right == null){
                 Root.Right = new TreeNode<T>(value);
                 return;
-            else
-                Insert(value, Root.Right);
+            }
+            else Insert(value, Root.Right);
         }
         else
         {
-            if (Root.Left == null)
+            if (Root.Left == null){
                 Root.Left = new TreeNode<T>(value);
                 return;
-            else
-                Insert(value, Root.Left);
+            }
+            else Insert(value, Root.Left);
         }
     }
 
