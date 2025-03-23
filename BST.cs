@@ -22,9 +22,11 @@ public class BST<T> : IBST<T> where T : IComparable<T>
     }
     public void InsertIterative(T value)
     {
-        var TempRoot = Root;
+        TreeNode<T> TempRoot = Root;
+        TreeNode<T> parent = null;
 
         while(TempRoot != null){
+            parent = TempRoot;
             if (value.CompareTo(TempRoot.Value) == 0) return;
             else if (value.CompareTo(TempRoot.Value) > 0){
                 TempRoot = TempRoot.Right;
@@ -33,7 +35,8 @@ public class BST<T> : IBST<T> where T : IComparable<T>
                 TempRoot = TempRoot.Left;
             }
         }
-        TempRoot = new TreeNode<T>(value);
+        if (value.CompareTo(parent.Value) > 0) parent.Right = new TreeNode<T>(value);
+        else parent.Left = new TreeNode<T>(value);
     }
 
     private void Insert(T value, TreeNode<T>? node)
