@@ -51,26 +51,10 @@ public class BST<T> : IBST<T> where T : IComparable<T>
         }
         if (value.CompareTo(node.Value) == 0) return;
 
-        if (value.CompareTo(node.Value) > 0)
-        {
-            if (node.Right == null){
-                node.Right = new TreeNode<T>(value);
-                return;
-            }
-            else {
-                Insert(value, ref node.Right);
-            }
+        if (value.CompareTo(node.Value) > 0){
+            Insert(value, ref node.Right);
         }
-        else
-        {
-            if (node.Left == null){
-                node.Left = new TreeNode<T>(value);
-                return;
-            }
-            else{
-                Insert(value, ref node.Left);
-            }
-        }
+        else Insert(value, ref node.Left);
     }
 
     #region Traversal
