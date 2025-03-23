@@ -5,11 +5,11 @@ public class BST<T> : IBST<T> where T : IComparable<T>
     public TreeNode<T>? Root { get; set; }
 
     public void Insert(T value){
-        if (value.CompareTo(Root.Value) == 0) return;
         if (Root == null){
             Root = new TreeNode<T>(value);
             return;
         }
+        if (value.CompareTo(Root.Value) == 0) return;
 
         if (value.CompareTo(Root.Value) > 0)
         {
@@ -38,11 +38,11 @@ public class BST<T> : IBST<T> where T : IComparable<T>
 
     private void Insert(T value, TreeNode<T>? node)
     {
-        if (value.CompareTo(Root.Value) == 0) return;
         if (Root == null){
             Root = new TreeNode<T>(value);
             return;
         }
+        if (value.CompareTo(Root.Value) == 0) return;
 
         if (value.CompareTo(Root.Value) > 0)
         {
