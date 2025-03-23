@@ -79,19 +79,41 @@ public class BST<T> : IBST<T> where T : IComparable<T>
     public string PreOrderTraversal() => PreOrderTraversal(Root);
     private string PreOrderTraversal(TreeNode<T>? currNode)
     {
-        throw new NotImplementedException();
+        string result = "";
+        if (currNode == null) return result;
+        result += currNode.Value.ToString();
+
+        result += PreOrderTraversal(currNode.Left);
+        result += PreOrderTraversal(currNode.Right);
+
+        return result;
     }
 
     public string InOrderTraversal() => InOrderTraversal(Root);
     private string InOrderTraversal(TreeNode<T>? currNode)
     {
-        throw new NotImplementedException();        
+        string result = "";
+        if (currNode == null) return result;
+
+        result += PreOrderTraversal(currNode.Left);
+        result += currNode.Value.ToString();
+        result += PreOrderTraversal(currNode.Right);
+
+        return result;       
     }
 
     public string PostOrderTraversal() => PostOrderTraversal(Root);
     private string PostOrderTraversal(TreeNode<T>? currNode)
     {
-        throw new NotImplementedException();
+        string result = "";
+        if (currNode == null) return result;
+
+        result += PreOrderTraversal(currNode.Left);
+        result += PreOrderTraversal(currNode.Right);
+
+        result += currNode.Value.ToString();
+
+        return result;  
 
     }
     #endregion
