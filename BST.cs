@@ -6,9 +6,12 @@ public class BST<T> : IBST<T> where T : IComparable<T>
 
     public void Insert(T value){
         if (value.CompareTo(Root.Value) == 0) return;
+        if (Root == null){
+            Root = new TreeNode<T>(value);
+            return;
+        }
 
-        return Root == null ? Root = new TreeNode<T>(value)
-        : value.CompareTo(Root.Value) > 0 ? Insert(value, Root.Right)
+        return value.CompareTo(Root.Value) > 0 ? Insert(value, Root.Right)
         : Insert(value, Root.Left);
     }
     public void InsertIterative(T value)
@@ -30,9 +33,12 @@ public class BST<T> : IBST<T> where T : IComparable<T>
     private void Insert(T value, TreeNode<T>? node)
     {
         if (value.CompareTo(Root.Value) == 0) return;
+        if (Root == null){
+            Root = new TreeNode<T>(value);
+            return;
+        }
 
-        return Root == null ? Root = new TreeNode<T>(value)
-        : value.CompareTo(Root.Value) > 0 ? Insert(value, Root.Right)
+        return value.CompareTo(Root.Value) > 0 ? Insert(value, Root.Right)
         : Insert(value, Root.Left);
     }
 
