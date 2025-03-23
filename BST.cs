@@ -80,13 +80,13 @@ public class BST<T> : IBST<T> where T : IComparable<T>
     private string PreOrderTraversal(TreeNode<T>? currNode)
     {
         string result = "";
-        if (currNode == null) return " ";
+        if (currNode == null) return result;
         result += currNode.Value.ToString();
 
         result += PreOrderTraversal(currNode.Left);
         result += PreOrderTraversal(currNode.Right);
 
-        return result;
+        return $"{result} ";
     }
 
     public string InOrderTraversal() => InOrderTraversal(Root);
