@@ -13,11 +13,13 @@ public class BST<T> : IBST<T> where T : IComparable<T>
 
         if (value.CompareTo(Root.Value) > 0)
         {
-            Insert(value, ref Root.Right);
+            if (Root.Right != null) Insert(value, Root.Right);
+            else Root.Right = new TreeNode<T>(value);
         }
         else
         {
-            Insert(value, ref Root.Left);
+            if (Root.Left != null) Insert(value, Root.Left);
+            else Root.Left = new TreeNode<T>(value);
         }
     }
     public void InsertIterative(T value)
@@ -43,18 +45,33 @@ public class BST<T> : IBST<T> where T : IComparable<T>
         else parent.Left = new TreeNode<T>(value);
     }
 
-    private void Insert(T value, ref TreeNode<T>? node)
+    private void Insert(T value, TreeNode<T>? node)
     {
         if (node == null){
-            node = new TreeNode<T>(value);
             return;
         }
         if (value.CompareTo(node.Value) == 0) return;
 
-        if (value.CompareTo(node.Value) > 0){
-            Insert(value, ref node.Right);
+        if (value.CompareTo(node.Value) > 0)
+        {
+            if (node.Right == null){
+                node.Right = new TreeNode<T>(value);
+                return;
+            }
+            else {
+                Insert(value, node.Right);
+            }
         }
-        else Insert(value, ref node.Left);
+        else
+        {
+            if (node.Left == null){
+                node.Left = new TreeNode<T>(value);
+                return;
+            }
+            else{
+                Insert(value, node.Left);
+            }
+        }
     }
 
     #region Traversal
