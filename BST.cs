@@ -80,7 +80,7 @@ public class BST<T> : IBST<T> where T : IComparable<T>
     private string PreOrderTraversal(TreeNode<T>? currNode)
     {
         string result = "";
-        if (currNode == null) return result;
+        if (currNode == null) return " ";
         result += currNode.Value.ToString();
 
         result += PreOrderTraversal(currNode.Left);
