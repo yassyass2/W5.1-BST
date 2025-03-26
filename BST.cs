@@ -115,13 +115,13 @@ public class BST<T> : IBST<T> where T : IComparable<T>
         if (node = null) return default;
         
         // value in the node is the same we are looking for
-        if (node == new TreeNode<T>(value)) return node;
+        if (node.Value.CompareTo(value) == 0) return node;
 
         // value in the node is smaller than the one we are looking for
-        if (node.value.CompareTo(value) > 0) return Search(node.Right, value);
+        if (node.Value.CompareTo(value) > 0) return Search(node.Right, value);
  
         // value in the node is bigger than the one we are looking for
-        if (node.value.CompareTo(value) < 0) return Search(node.Left, value);
+        return Search(node.Left, value);
     }
 
     #region  Remove Delete
