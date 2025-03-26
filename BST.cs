@@ -164,9 +164,8 @@ public class BST<T> : IBST<T> where T : IComparable<T>
         // CASE 3 : TWO CHILDREN
         else if (nodeToDelete.Left != null && nodeToDelete.Right != null){
             var succ = findInOrderSucc(nodeToDelete);
-            bool result = delete(succ);
             nodeToDelete.Value = succ.Value;
-            return result;
+            return delete(succ);
         }
 
         // CASE 2 : ONE CHILD
