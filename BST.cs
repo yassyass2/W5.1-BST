@@ -165,7 +165,7 @@ public class BST<T> : IBST<T> where T : IComparable<T>
         else if (nodeToDelete.Left != null && nodeToDelete.Right != null){
             var succ = findInOrderSucc(nodeToDelete);
             bool result = delete(succ);
-            nodeToDelete = succ;
+            nodeToDelete.Value = succ.Value;
             return result;
         }
 
