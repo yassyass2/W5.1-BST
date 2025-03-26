@@ -129,18 +129,34 @@ public class BST<T> : IBST<T> where T : IComparable<T>
     public bool Remove(T value) => DeleteValue(this, value);
 
     private bool DeleteValue(BST<T>? tree, T value)
-    { 
-        throw new NotImplementedException();
+    {
         // special case if the value to delete is in the root (and the root has 0 children or 1 child)
-        
-            // there are no children:
+        // there are no children:
+        if (tree.Root.Value.CompareTo(value) == 0){
+            if (tree.Root.Left != null && tree.Root.Right != null){
+                var succ = findInOrderSucc(tree.Root);
+                bool result = delete(succ);
+                tree.Root = succ;
+                return result;
+            }
+            tree.Root = null;
+            return true;
+        }
 
-            // there is only left child, the right does not exist
-            
-            // there is only right child, the left does not exist
+        var nodeToDelete = Search(tree.Root, value);
+        if (nodeToDelete == null) return false;
+        return delete(nodeToDelete);
 
+        // there is only left child, the right does not exist
+        // there is only right child, the left does not exist
+        if (nodeToDelete.Left != null || nodeToDelete.Right == null){
+            return delete(nodeToDelete);
+        }
 
         // all other cases. Find first the node corresponding to the value we want to delete
+        if (nodeToDelete.Left != null && nodeToDelete.Right != null){
+            return delete(nodeToDelete);
+        }
 
         // actually perform the deletion
 
@@ -148,12 +164,43 @@ public class BST<T> : IBST<T> where T : IComparable<T>
 
     private bool delete(TreeNode<T> nodeToDelete)
     {
-        throw new NotImplementedException();
         // CASE 1 : LEAF
-
-        // CASE 2 : ONE CHILD
+        if (nodeToDelete.Left == null && nodeToDelete.Right == null){
+    	    if (isLeft(nodeToDelete, nodeToDelete.Parent)){
+                nodeToDelete.Parent.Left = null;
+            } else{
+                nodeToDelete.Parent.Right = null;
+            }
+            return true;
+        }
 
         // CASE 3 : TWO CHILDREN
+        else if (nodeToDelete.Left != null && nodeToDelete.Right != null){
+            var succ = findInOrderSucc(nodeToDelete);
+            bool result = delete(succ);
+            nodeToDelete = succ;
+            return result;
+        }
+
+        // CASE 2 : ONE CHILD
+        else if (nodeToDelete.Left == null){
+            if (isLeft(nodeToDelete, nodeToDelete.Parent)){
+                nodeToDelete.Parent.Left = nodeToDelete.Right;
+            } else{
+                nodeToDelete.Parent.Right = nodeToDelete.Right;
+            }
+            nodeToDelete.Right.Parent = nodeToDelete.Parent;
+            return true;
+        }
+        else if (nodeToDelete.Right == null){
+            if (isLeft(nodeToDelete, nodeToDelete.Parent)){
+                nodeToDelete.Parent.Left = nodeToDelete.Left;
+            } else{
+                nodeToDelete.Parent.Right = nodeToDelete.Left;
+            }
+            nodeToDelete.Left.Parent = nodeToDelete.Parent;
+            return true;
+        }
 
         // find inordersucc == smallest element of right subtree
 
