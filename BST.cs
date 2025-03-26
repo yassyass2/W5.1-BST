@@ -112,7 +112,7 @@ public class BST<T> : IBST<T> where T : IComparable<T>
     private TreeNode<T> Search(TreeNode<T>? node, T value)
     {
         // node does not exist
-        if (node = null) return default;
+        if (node == null) return default;
         
         // value in the node is the same we are looking for
         if (node.Value.CompareTo(value) == 0) return node;
