@@ -107,24 +107,26 @@ public class BST<T> : IBST<T> where T : IComparable<T>
     }
     #endregion
 
-    public bool Contains(T value) => throw new NotImplementedException(); 
+    public bool Contains(T value) => Search(Root, value) != null;
 
     private TreeNode<T> Search(TreeNode<T>? node, T value)
     {
-        throw new NotImplementedException();
         // node does not exist
+        if (node = null) return default;
         
         // value in the node is the same we are looking for
+        if (node == new TreeNode<T>(value)) return node;
 
         // value in the node is smaller than the one we are looking for
+        if (node.value.CompareTo(value) > 0) return Search(node.Right, value);
  
         // value in the node is bigger than the one we are looking for
-
+        if (node.value.CompareTo(value) < 0) return Search(node.Left, value);
     }
 
     #region  Remove Delete
 
-    public bool Remove(T value) => throw new NotImplementedException();
+    public bool Remove(T value) => DeleteValue(this, value);
 
     private bool DeleteValue(BST<T>? tree, T value)
     { 
