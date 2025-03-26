@@ -146,20 +146,7 @@ public class BST<T> : IBST<T> where T : IComparable<T>
         var nodeToDelete = Search(tree.Root, value);
         if (nodeToDelete == null) return false;
         return delete(nodeToDelete);
-
-        // there is only left child, the right does not exist
-        // there is only right child, the left does not exist
-        if (nodeToDelete.Left != null || nodeToDelete.Right == null){
-            return delete(nodeToDelete);
-        }
-
-        // all other cases. Find first the node corresponding to the value we want to delete
-        if (nodeToDelete.Left != null && nodeToDelete.Right != null){
-            return delete(nodeToDelete);
-        }
-
         // actually perform the deletion
-
     }
 
     private bool delete(TreeNode<T> nodeToDelete)
