@@ -138,7 +138,7 @@ public class BST<T> : IBST<T> where T : IComparable<T>
                 tree.Root.Value = succ.Value;
                 return delete(succ);
             }
-            tree.Root = null;
+            tree.Root = (tree.Root.Left != null) ? tree.Root.Left : tree.Root.Right;
             return true;
         }
 
