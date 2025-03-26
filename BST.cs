@@ -135,9 +135,8 @@ public class BST<T> : IBST<T> where T : IComparable<T>
         if (tree.Root.Value.CompareTo(value) == 0){
             if (tree.Root.Left != null && tree.Root.Right != null){
                 var succ = findInOrderSucc(tree.Root);
-                bool result = delete(succ);
-                tree.Root = succ;
-                return result;
+                tree.Root.Value = succ.Value;
+                return delete(succ);
             }
             tree.Root = null;
             return true;
