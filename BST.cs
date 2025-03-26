@@ -192,7 +192,7 @@ public class BST<T> : IBST<T> where T : IComparable<T>
             nodeToDelete.Right.Parent = nodeToDelete.Parent;
             return true;
         }
-        else if (nodeToDelete.Right == null){
+        else {
             if (isLeft(nodeToDelete, nodeToDelete.Parent)){
                 nodeToDelete.Parent.Left = nodeToDelete.Left;
             } else{
