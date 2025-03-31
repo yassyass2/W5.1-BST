@@ -117,11 +117,11 @@ public class BST<T> : IBST<T> where T : IComparable<T>
         // value in the node is the same we are looking for
         if (node.Value.CompareTo(value) == 0) return node;
 
-        // value in the node is smaller than the one we are looking for
-        if (node.Value.CompareTo(value) > 0) return Search(node.Right, value);
- 
         // value in the node is bigger than the one we are looking for
-        return Search(node.Left, value);
+        if (node.Value.CompareTo(value) > 0) return Search(node.Left, value);
+ 
+        // value in the node is smaller than the one we are looking for
+        return Search(node.Right, value);
     }
 
     #region  Remove Delete
